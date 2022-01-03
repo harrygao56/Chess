@@ -1,7 +1,7 @@
 package chess;
 
-public class King extends Piece{
-	public King(boolean white)
+public class Queen extends Piece{
+	public Queen(boolean white)
 	{
 		super(white);
 	}
@@ -10,11 +10,11 @@ public class King extends Piece{
 	{
 		if(super.isWhite())
 		{
-			return "K";
+			return "Q";
 		}
 		else
 		{
-			return "k";
+			return "q";
 		}
 	}
 }

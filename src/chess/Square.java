@@ -38,4 +38,18 @@ public class Square {
 	{
 		this.piece = piece;
 	}
+	
+	public String toString()
+	{
+		String val = "";
+		if (white)
+		{
+			val = val.concat("(W)" + piece);
+		}
+		else
+		{
+			val = val.concat("(B)" + piece);
+		}
+		return val;
+	}
 }

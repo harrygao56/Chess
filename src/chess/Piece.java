@@ -26,4 +26,6 @@ public abstract class Piece {
 	}
 	
 	//public abstract void moves();
+	
+	public abstract String toString();
 }
