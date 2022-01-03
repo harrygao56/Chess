@@ -25,5 +25,5 @@ public abstract class Piece {
 		alive = false;
 	}
 	
-	public abstract void moves();
+	//public abstract void moves();
 }
