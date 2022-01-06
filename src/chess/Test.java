@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Test extends JFrame implements MouseMotionListener {
+public class Test {
 	int mouseX = 20;
 	int mouseY = 20;
 	JLabel label = new JLabel();
@@ -17,34 +17,13 @@ public class Test extends JFrame implements MouseMotionListener {
 	
 	public Test()
 	{
-		Board b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+		Board b = new Board("r1b1kb1r/ppp2ppp/2n1pn2/q7/3P4/2N2N2/PPPB1PPP/R2QKB1R");
 		System.out.println(b);
 		
-		panel.setBounds(15,40,400,400);
-		panel.setBackground(Color.cyan);
-		panel.setLayout(null);
-		panel.addMouseMotionListener(this);
-		this.add(panel);
-		
-		label.setBounds(mouseX, mouseY, 50, 50);
-		label.setIcon(b.board[7][4].getPiece().getIcon());
-		panel.add(label);
 	}
 	
-	public void mouseDragged(MouseEvent e) {
-	    mouseX = e.getX();
-	    mouseY = e.getY();
-	    label.setBounds(mouseX, mouseY, 50, 50);
-	}
-	
-	public void mouseMoved(MouseEvent e) {}
-	
-	public static void main(String[] args) {
-		Test frame = new Test();
-	    frame.setVisible(true);
-	    frame.setSize(600, 600);
-	    frame.setResizable(false);
-	    frame.setLocationRelativeTo(null);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public static void main(String[] args)
+	{
+		Test test = new Test();
 	}
 }

@@ -7,7 +7,8 @@ public class Board {
 	
 	//FEN: Position Notation
 	//Definition at https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation
-	//Starting FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+	//Starting FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
+	//Random position: r1b1kb1r/ppp2ppp/2n1pn2/q7/3P4/2N2N2/PPPB1PPP/R2QKB1R
 	public Board(String fen)
 	{
 		//Set up the board using FEN
@@ -85,7 +86,7 @@ public class Board {
 				else
 				{
 					int num = Character.getNumericValue(fen.charAt(0));
-					for (int k = j; k < num; k++)
+					for (int k = j; k < j + num; k++)
 					{
 						if ((i+k)%2 == 0)
 						{
@@ -97,7 +98,7 @@ public class Board {
 						}
 					}
 					fen = fen.substring(1);
-					j+=num;
+					j+=(num - 1);
 					continue;
 				}
 				
@@ -111,6 +112,11 @@ public class Board {
 				}
 			}
 		}
+	}
+	
+	public Square[][] getBoard()
+	{
+		return board;
 	}
 	
 	public String toString()

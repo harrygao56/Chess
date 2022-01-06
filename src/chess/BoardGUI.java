@@ -4,41 +4,44 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class DragLabelOnLayeredPane extends JLayeredPane {
-    public static final int WIDTH = 660;
-    public static final int HEIGHT = 600;
+public class BoardGUI extends JLayeredPane {
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 400;
     private static final int GRID_ROWS = 8;
     private static final int GRID_COLS = 8;
     private static final Dimension LAYERED_PANE_SIZE = new Dimension(WIDTH, HEIGHT);
-    private static final Dimension LABEL_SIZE = new Dimension(60, 40);
     private GridLayout gridlayout = new GridLayout(GRID_ROWS, GRID_COLS);
     private JPanel backingPanel = new JPanel(gridlayout);
-    private JPanel[][] panelGrid = new JPanel[GRID_ROWS][GRID_COLS];
-    private JLabel redLabel = new JLabel("Red", SwingConstants.CENTER);
-    private JLabel blueLabel = new JLabel("Blue", SwingConstants.CENTER);
+    private JPanel[][] squares = new JPanel[GRID_ROWS][GRID_COLS];
+    Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 
-    public DragLabelOnLayeredPane(JPanel[][] squares) {
+    public BoardGUI() {
         backingPanel.setSize(LAYERED_PANE_SIZE);
         backingPanel.setLocation(0, 0);
-        backingPanel.setBackground(Color.black);
-        for (int row = 0; row < GRID_ROWS; row++) {
-            for (int col = 0; col < GRID_COLS; col++) {
-                panelGrid[row][col] = new JPanel(new GridBagLayout());
-                backingPanel.add(panelGrid[row][col]);
-            }
-        }
+        backingPanel.setBackground(Color.white);
+        
+        for (int i = 0; i < squares.length; i++)
+		{
+			for (int j = 0; j < squares.length; j++)
+			{
+				squares[i][j] = new JPanel(new GridBagLayout());
+				squares[i][j].setSize(new Dimension(50,50));
+				if (board.board[i][j].isWhite())
+				{
+					squares[i][j].setBackground(Color.white);
+				}
+				else 
+				{
+					squares[i][j].setBackground(Color.gray);
+				}
+				if (board.getBoard()[i][j].getPiece() != null)
+				{
+					squares[i][j].add(board.getBoard()[i][j].getPiece());
+				}
+				backingPanel.add(squares[i][j]);
+			}
+		}
 
-        redLabel.setOpaque(true);
-        redLabel.setBackground(Color.red.brighter().brighter());
-        redLabel.setPreferredSize(LABEL_SIZE);
-        panelGrid[4][3].add(redLabel);
-
-        blueLabel.setOpaque(true);
-        blueLabel.setBackground(Color.blue.brighter().brighter());
-        blueLabel.setPreferredSize(LABEL_SIZE);
-        panelGrid[1][1].add(blueLabel);
-
-        backingPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setPreferredSize(LAYERED_PANE_SIZE);
         add(backingPanel, JLayeredPane.DEFAULT_LAYER);
         MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
@@ -104,9 +107,9 @@ public class DragLabelOnLayeredPane extends JLayeredPane {
             } else {
                 int r = -1;
                 int c = -1;
-                searchPanelGrid: for (int row = 0; row < panelGrid.length; row++) {
-                    for (int col = 0; col < panelGrid[row].length; col++) {
-                        if (panelGrid[row][col] == droppedPanel) {
+                searchPanelGrid: for (int row = 0; row < squares.length; row++) {
+                    for (int col = 0; col < squares[row].length; col++) {
+                        if (squares[row][col] == droppedPanel) {
                             r = row;
                             c = col;
                             break searchPanelGrid;
@@ -127,22 +130,5 @@ public class DragLabelOnLayeredPane extends JLayeredPane {
             repaint();
             dragLabel = null;
         }
-    }
-
-    private static void createAndShowUI() {
-        JFrame frame = new JFrame("DragLabelOnLayeredPane");
-        frame.getContentPane().add(new DragLabelOnLayeredPane());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowUI();
-            }
-        });
     }
 }

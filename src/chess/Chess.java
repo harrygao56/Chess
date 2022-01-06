@@ -82,38 +82,10 @@ public class Chess extends JFrame {
 	{
 		remove(menu);
 		
-		JPanel game = new JPanel();
-		game.setSize(400, 600);
-		game.setBackground(Color.white);
-		GridBagLayout grid = new GridBagLayout();
-		GridBagConstraints gbc = new GridBagConstraints();
-		game.setLayout(grid);
-		
-		Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-		JPanel squares[][] = new JPanel[8][8];
-		for (int i = 0; i < squares.length; i++)
-		{
-			for (int j = 0; j < squares.length; j++)
-			{
-				squares[i][j] = new JPanel();
-				squares[i][j].setSize(new Dimension(50,50));
-				if (board.board[i][j].isWhite())
-				{
-					squares[i][j].setBackground(Color.white);
-				}
-				else 
-				{
-					squares[i][j].setBackground(Color.black);
-				}
-				gbc.gridx = i;
-				gbc.gridy = j;
-				game.add(squares[i][j], gbc);
-			}
-		}
-		
-		add(game);
+		getContentPane().add(new BoardGUI());
 		revalidate();
 		repaint();
+		pack();
 	}
 	
 	public static void main(String[] args)

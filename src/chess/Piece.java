@@ -1,17 +1,22 @@
 package chess;
 
-import javax.swing.ImageIcon;
+import java.awt.Image;
 
-public abstract class Piece {
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public abstract class Piece extends JLabel {
 	private boolean alive;
 	private boolean white;
-	private ImageIcon icon;
 	
 	public Piece(boolean white, ImageIcon icon)
 	{
-		this.icon = icon;
 		this.white = white;
 		alive = true;
+		Image image = icon.getImage();
+		Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
+		icon = new ImageIcon(newimg);
+		setIcon(icon);
 	}
 	
 	public boolean isAlive()
@@ -27,11 +32,6 @@ public abstract class Piece {
 	public void die()
 	{
 		alive = false;
-	}
-	
-	public ImageIcon getIcon()
-	{
-		return icon;
 	}
 	
 	//public abstract void moves();
