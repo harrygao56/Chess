@@ -1,5 +1,7 @@
 package chess;
 
+import javax.swing.ImageIcon;
+
 public class Board {
 	public Square[][] board;
 	
@@ -22,62 +24,62 @@ public class Board {
 				Piece piece;
 				if (fen.charAt(0) == 'K')
 				{
-					piece = new King(true);
+					piece = new King(true, new ImageIcon(getClass().getClassLoader().getResource("king-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'k')
 				{
-					piece = new King(false);
+					piece = new King(false, new ImageIcon(getClass().getClassLoader().getResource("king-B.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'Q')
 				{
-					piece = new Queen(true);
+					piece = new Queen(true, new ImageIcon(getClass().getClassLoader().getResource("queen-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'q')
 				{
-					piece = new Queen(false);
+					piece = new Queen(false, new ImageIcon(getClass().getClassLoader().getResource("queen-B.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'R')
 				{
-					piece = new Rook(true);
+					piece = new Rook(true, new ImageIcon(getClass().getClassLoader().getResource("rook-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'r')
 				{
-					piece = new Rook(false);
+					piece = new Rook(false, new ImageIcon(getClass().getClassLoader().getResource("rook-B.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'N')
 				{
-					piece = new Knight(true);
+					piece = new Knight(true, new ImageIcon(getClass().getClassLoader().getResource("knight-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'n')
 				{
-					piece = new Knight(false);
+					piece = new Knight(false, new ImageIcon(getClass().getClassLoader().getResource("knight-B.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'B')
 				{
-					piece = new Bishop(true);
+					piece = new Bishop(true, new ImageIcon(getClass().getClassLoader().getResource("bishop-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'b')
 				{
-					piece = new Bishop(false);
+					piece = new Bishop(false, new ImageIcon(getClass().getClassLoader().getResource("bishop-B.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'P')
 				{
-					piece = new Pawn(true);
+					piece = new Pawn(true, new ImageIcon(getClass().getClassLoader().getResource("pawn-W.png")));
 					fen = fen.substring(1);
 				}
 				else if (fen.charAt(0) == 'p')
 				{
-					piece = new Pawn(false);
+					piece = new Pawn(false, new ImageIcon(getClass().getClassLoader().getResource("pawn-B.png")));
 					fen = fen.substring(1);
 				}
 				else

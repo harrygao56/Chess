@@ -1,9 +1,11 @@
 package chess;
 
+import javax.swing.ImageIcon;
+
 public class Bishop extends Piece{
-	public Bishop(boolean white)
+	public Bishop(boolean white, ImageIcon icon)
 	{
-		super(white);
+		super(white, icon);
 	}
 	
 	public String toString()
